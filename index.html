@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fauna Brasileira - Biodiversidade Única</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header role="banner">
+        <nav class="navbar" aria-label="Navegação Principal">
+            <div class="logo">BioBrasil</div>
+            <div class="accessibility-controls">
+                <button id="increase-font" aria-label="Aumentar fonte">A+</button>
+                <button id="decrease-font" aria-label="Diminuir fonte">A-</button>
+                <button id="toggle-contrast" aria-label="Alternar Alto Contraste">Contraste</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title">Descubra a Fauna Brasileira</h1>
+            <p>Conheça a riqueza e a diversidade dos animais que habitam nossas florestas, rios e campos.</p>
+        </section>
+
+        <section id="galeria" class="reveal" aria-labelledby="galeria-title">
+            <h2 id="galeria-title">Espécies em Destaque</h2>
+            <div id="animal-grid" class="grid-container">
+                </div>
+        </section>
+
+        <section id="biomas" class="reveal" aria-labelledby="biomas-title">
+            <h2 id="biomas-title">Preservação por Biomas</h2>
+            <div class="carousel" role="region" aria-roledescription="carousel">
+                <div id="carousel-track" class="carousel-track">
+                    </div>
+                <div class="carousel-nav">
+                    <button id="prev-btn" aria-label="Slide anterior">Anterior</button>
+                    <button id="next-btn" aria-label="Próximo slide">Próximo</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="info" class="reveal" aria-labelledby="info-title">
+            <h2 id="info-title">Curiosidades e Ações</h2>
+            <div id="accordion-container">
+                </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2023 Fauna Brasileira. Desenvolvido com foco em acessibilidade.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
