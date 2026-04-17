@@ -1,79 +1,54 @@
-// --- GESTÃO DE DADOS ---
-const animais = [
-    { nome: "Onça-Pintada", bioma: "Pantanal/Amazônia", desc: "O maior felino das Américas." },
-    { nome: "Mico-Leão-Dourado", bioma: "Mata Atlântica", desc: "Símbolo da conservação no Brasil." },
-    { nome: "Arara-Azul", bioma: "Cerrado", desc: "Conhecida por sua plumagem azul vibrante." },
-    { nome: "Lobo-Guará", bioma: "Cerrado", desc: "O maior canídeo da América do Sul." }
+// --- BASE DE DADOS (Simulando um JSON) ---
+const especies = [
+    { 
+        nome: "Onça-Pintada", 
+        classe: "Mamífero", 
+        img: "https://images.unsplash.com/photo-1574068468668-a05a11f871da?auto=format&fit=crop&w=500",
+        desc: "O topo da cadeia alimentar dos biomas brasileiros."
+    },
+    { 
+        nome: "Arara-Vermelha", 
+        classe: "Ave", 
+        img: "https://images.unsplash.com/photo-1552728089-57bdde30ebd3?auto=format&fit=crop&w=500",
+        desc: "Pássaros inteligentes conhecidos por sua cor vibrante."
+    },
+    { 
+        nome: "Jacaré-do-Pantanal", 
+        classe: "Répteis", 
+        img: "https://images.unsplash.com/photo-1549240923-93a2e080e653?auto=format&fit=crop&w=500",
+        desc: "Essencial para o equilíbrio das águas pantaneiras."
+    },
+    { 
+        nome: "Tamanduá-Bandeira", 
+        classe: "Mamífero", 
+        img: "https://images.unsplash.com/photo-1589921314905-9333555232a9?auto=format&fit=crop&w=500",
+        desc: "Possui uma língua de 60cm para capturar formigas."
+    }
 ];
 
-const biomasInfo = [
-    { titulo: "Amazônia", texto: "A maior biodiversidade do planeta." },
-    { titulo: "Cerrado", texto: "A savana brasileira, rica em espécies endêmicas." },
-    { titulo: "Pantanal", texto: "A maior planície inundável do mundo." }
+const biomas = [
+    { nome: "Amazônia", info: "O maior bioma brasileiro e a maior floresta tropical do mundo." },
+    { nome: "Cerrado", info: "O berço das águas do Brasil, com vegetação de savana." },
+    { nome: "Pantanal", info: "A maior área úmida continental do planeta." }
 ];
 
-// --- RENDERIZAÇÃO DINÂMICA ---
-function renderGallery() {
+// --- RENDERIZADORES ---
+
+function renderGrid(data) {
     const grid = document.getElementById('animal-grid');
-    grid.innerHTML = animais.map(animal => `
-        <article class="animal-card">
-            <h3>${animal.nome}</h3>
-            <p><strong>Bioma:</strong> ${animal.bioma}</p>
-            <p>${animal.desc}</p>
+    grid.innerHTML = data.map(animal => `
+        <article class="animal-card" data-category="${animal.classe}">
+            <img src="${animal.img}" alt="${animal.nome}" loading="lazy">
+            <div class="card-body">
+                <span class="badge">${animal.classe}</span>
+                <h3>${animal.nome}</h3>
+                <p>${animal.desc}</p>
+            </div>
         </article>
     `).join('');
 }
 
-// --- ACESSIBILIDADE: FONTE E CONTRASTE ---
-let fontSize = 16;
-document.getElementById('increase-font').addEventListener('click', () => {
-    fontSize += 2;
-    document.body.style.fontSize = fontSize + 'px';
-});
-
-document.getElementById('decrease-font').addEventListener('click', () => {
-    fontSize -= 2;
-    document.body.style.fontSize = fontSize + 'px';
-});
-
-document.getElementById('toggle-contrast').addEventListener('click', () => {
-    document.body.classList.toggle('high-contrast');
-});
-
-// --- CARROSSEL ---
-let currentSlide = 0;
-function renderCarousel() {
-    const track = document.getElementById('carousel-track');
-    track.innerHTML = biomasInfo.map(info => `
-        <div class="carousel-item">
-            <h3>${info.titulo}</h3>
-            <p>${info.texto}</p>
-        </div>
-    `).join('');
-}
-
-document.getElementById('next-btn').addEventListener('click', () => {
-    currentSlide = (currentSlide + 1) % biomasInfo.length;
-    updateCarousel();
-});
-
-function updateCarousel() {
-    const track = document.getElementById('carousel-track');
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-}
-
-// --- SCROLL REVEAL (INTERSECTION OBSERVER) ---
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
-    });
-}, { threshold: 0.1 });
-
-// --- INICIALIZAÇÃO ---
-window.onload = () => {
-    renderGallery();
-    renderCarousel();
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-};
+function renderAccordion() {
+    const acc = document.getElementById('accordion-group');
+    const faqs = [
+        { q: "Qual a maior ameaça?", a: "
