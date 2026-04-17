@@ -3,74 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioBrasil Pro - Fauna e Conservação</title>
+    <title>Fauna Brasileira - Biodiversidade Única</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="top"></div>
-    
-    <header role="banner" class="main-header">
+    <header role="banner">
         <nav class="navbar" aria-label="Navegação Principal">
-            <div class="logo">Bio<span>Brasil</span></div>
-            <div class="accessibility-bar">
-                <button onclick="changeFontSize('increase')" title="Aumentar Fonte" aria-label="Aumentar Fonte">A+</button>
-                <button onclick="changeFontSize('decrease')" title="Diminuir Fonte" aria-label="Diminuir Fonte">A-</button>
-                <button id="contrast-toggle" title="Alto Contraste" aria-label="Alternar Alto Contraste">◐</button>
+            <div class="logo">BioBrasil</div>
+            <div class="accessibility-controls">
+                <button id="increase-font" aria-label="Aumentar fonte">A+</button>
+                <button id="decrease-font" aria-label="Diminuir fonte">A-</button>
+                <button id="toggle-contrast" aria-label="Alternar Alto Contraste">Contraste</button>
             </div>
         </nav>
     </header>
 
     <main>
-        <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1581343109213-353cf193ac83?auto=format&fit=crop&q=80&w=1600');">
-            <div class="hero-content reveal">
-                <h1>Biodiversidade Brasileira</h1>
-                <p>Explore as espécies mais fascinantes dos nossos biomas e entenda a importância da conservação.</p>
-                <a href="#galeria" class="btn-primary">Explorar Espécies</a>
-            </div>
+        <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title">Descubra a Fauna Brasileira</h1>
+            <p>Conheça a riqueza e a diversidade dos animais que habitam nossas florestas, rios e campos.</p>
         </section>
 
-        <section id="galeria" class="section-padding">
-            <header class="section-header reveal">
-                <h2>Espécies em Destaque</h2>
-                <div class="filters">
-                    <button class="filter-btn active" data-filter="todos">Todos</button>
-                    <button class="filter-btn" data-filter="Mamífero">Mamíferos</button>
-                    <button class="filter-btn" data-filter="Ave">Aves</button>
-                    <button class="filter-btn" data-filter="Répteis">Répteis</button>
-                </div>
-            </header>
-            
-            <div id="animal-grid" class="grid-container reveal">
+        <section id="galeria" class="reveal" aria-labelledby="galeria-title">
+            <h2 id="galeria-title">Espécies em Destaque</h2>
+            <div id="animal-grid" class="grid-container">
                 </div>
         </section>
 
-        <section id="biomas" class="dark-section section-padding">
-            <div class="container">
-                <h2 class="reveal">Os Biomas do Brasil</h2>
-                <div class="carousel-container reveal">
-                    <div id="carousel-track" class="carousel-track">
-                        </div>
-                    <div class="carousel-controls">
-                        <button class="prev" aria-label="Slide Anterior">❮</button>
-                        <button class="next" aria-label="Próximo Slide">❯</button>
+        <section id="biomas" class="reveal" aria-labelledby="biomas-title">
+            <h2 id="biomas-title">Preservação por Biomas</h2>
+            <div class="carousel" role="region" aria-roledescription="carousel">
+                <div id="carousel-track" class="carousel-track">
                     </div>
+                <div class="carousel-nav">
+                    <button id="prev-btn" aria-label="Slide anterior">Anterior</button>
+                    <button id="next-btn" aria-label="Próximo slide">Próximo</button>
                 </div>
             </div>
         </section>
 
-        <section id="conservacao" class="section-padding reveal">
-            <div class="container">
-                <h2>Por que preservar?</h2>
-                <div id="accordion-group" class="accordion">
-                    </div>
-            </div>
+        <section id="info" class="reveal" aria-labelledby="info-title">
+            <h2 id="info-title">Curiosidades e Ações</h2>
+            <div id="accordion-container">
+                </div>
         </section>
     </main>
 
-    <footer class="main-footer">
-        <p>&copy; 2023 Fauna Brasil. Todos os direitos reservados.</p>
-        <a href="#top" class="back-to-top">↑</a>
+    <footer role="contentinfo">
+        <p>&copy; 2023 Fauna Brasileira. Desenvolvido com foco em acessibilidade.</p>
     </footer>
 
     <script src="script.js"></script>
