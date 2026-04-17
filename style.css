@@ -1,104 +1,133 @@
-/* --- DESIGN SYSTEM & VARIÁVEIS --- */
+/* --- VARIÁVEIS DO SISTEMA --- */
 :root {
-    --primary-color: #2e7d32;
-    --secondary-color: #fbc02d;
-    --bg-color: #f4f7f6;
-    --text-color: #333;
-    --card-bg: #ffffff;
-    --radius: 12px;
-    --spacing: 1.5rem;
-    --font-base: 16px;
-    --transition: all 0.3s ease;
+    --primary: #1b5e20;
+    --primary-light: #4c8c4a;
+    --accent: #ffab00;
+    --bg-light: #f8f9fa;
+    --text-main: #212121;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.9);
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* --- MODO ALTO CONTRASTE --- */
+/* --- ALTO CONTRASTE --- */
 body.high-contrast {
-    --bg-color: #000;
-    --text-color: #fff;
-    --primary-color: #ffff00;
-    --card-bg: #1a1a1a;
-    --secondary-color: #00ffff;
+    --bg-light: #000;
+    --text-main: #fff;
+    --primary: #ffff00;
+    --primary-light: #ffff00;
+    --white: #000;
+    --glass: #000;
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-size: var(--font-base);
-    line-height: 1.6;
-    transition: var(--transition);
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    overflow-x: hidden;
 }
 
-/* --- LAYOUT (MOBILE-FIRST) --- */
-.navbar {
+h1, h2, .logo { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efeito Parallax */
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem var(--spacing);
-    background: var(--primary-color);
+    justify-content: center;
+    text-align: center;
     color: white;
 }
 
-/* GRID CONFIGURATION - Editável aqui */
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+
+/* --- GRID & CARDS --- */
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr; /* Mobile */
-    gap: var(--spacing);
-    padding: var(--spacing);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
 }
 
-@media (min-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Desktop */
-    }
-}
-
-/* --- COMPONENTES --- */
 .animal-card {
-    background: var(--card-bg);
+    background: var(--white);
     border-radius: var(--radius);
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border: 2px solid transparent;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
 }
 
-.carousel {
-    overflow: hidden;
+.animal-card:hover { transform: translateY(-10px); }
+
+.animal-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body { padding: 1.5rem; }
+
+/* --- CARROSSEL --- */
+.carousel-container {
     position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1000px;
+    margin: 2rem auto;
+    overflow: hidden;
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    gap: 1rem;
+    transition: transform 0.6s ease;
 }
 
 .carousel-item {
     min-width: 100%;
-    padding: 2rem;
-    text-align: center;
+    background: var(--glass);
+    padding: 3rem;
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
 }
 
-/* --- ACESSIBILIDADE E ANIMAÇÕES --- */
+/* --- ACORDEÃO --- */
+.accordion-item {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 0.5rem;
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 1.5rem;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 1.5rem;
+}
+
+/* --- ANIMAÇÕES DE SCROLL --- */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: 0.8s all ease-out;
+    transform: scale(0.95) translateY(30px);
+    transition: 0.8s all ease;
 }
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
-}
-
-button {
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-    border: none;
-    background: var(--secondary-color);
-    font-weight: bold;
+    transform: scale(1) translateY(0);
 }
