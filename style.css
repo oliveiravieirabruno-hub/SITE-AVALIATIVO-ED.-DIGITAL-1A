@@ -1,0 +1,104 @@
+/* --- DESIGN SYSTEM & VARIÁVEIS --- */
+:root {
+    --primary-color: #2e7d32;
+    --secondary-color: #fbc02d;
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --radius: 12px;
+    --spacing: 1.5rem;
+    --font-base: 16px;
+    --transition: all 0.3s ease;
+}
+
+/* --- MODO ALTO CONTRASTE --- */
+body.high-contrast {
+    --bg-color: #000;
+    --text-color: #fff;
+    --primary-color: #ffff00;
+    --card-bg: #1a1a1a;
+    --secondary-color: #00ffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: var(--font-base);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+/* --- LAYOUT (MOBILE-FIRST) --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem var(--spacing);
+    background: var(--primary-color);
+    color: white;
+}
+
+/* GRID CONFIGURATION - Editável aqui */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile */
+    gap: var(--spacing);
+    padding: var(--spacing);
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Desktop */
+    }
+}
+
+/* --- COMPONENTES --- */
+.animal-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 2px solid transparent;
+}
+
+.carousel {
+    overflow: hidden;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* --- ACESSIBILIDADE E ANIMAÇÕES --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s all ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+button {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: none;
+    background: var(--secondary-color);
+    font-weight: bold;
+}
